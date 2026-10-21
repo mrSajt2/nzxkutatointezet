@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#07090f">
+  <title>NZX KUTATÓINTÉZET</title>
+  <style>
+    :root {
+      color-scheme: dark;
+      --bg: #07090f;
+      --ice: #eaf7ff;
+      --blue: #75cfff;
+      --violet: #b3a2ff;
+    }
+    * { box-sizing: border-box; }
+    html, body { width: 100%; min-height: 100%; margin: 0; }
+    body {
+      min-height: 100svh;
+      display: grid;
+      place-items: center;
+      overflow: hidden;
+      background:
+        radial-gradient(ellipse at 50% 46%, rgba(34, 83, 130, .19), transparent 42%),
+        radial-gradient(ellipse at 82% 20%, rgba(88, 55, 155, .12), transparent 34%),
+        var(--bg);
+      font-family: Inter, "SF Pro Display", "Segoe UI", Arial, sans-serif;
+    }
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      background-image:
+        linear-gradient(rgba(160, 202, 255, .035) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(160, 202, 255, .035) 1px, transparent 1px);
+      background-size: 64px 64px;
+      mask-image: radial-gradient(ellipse at center, #000 12%, transparent 78%);
+    }
+    body::after {
+      content: "";
+      position: fixed;
+      width: 48vw;
+      height: 1px;
+      top: 50%;
+      left: 26vw;
+      background: linear-gradient(90deg, transparent, rgba(117, 207, 255, .8), rgba(179, 162, 255, .65), transparent);
+      filter: blur(18px);
+      opacity: .65;
+      pointer-events: none;
+    }
+    main {
+      position: relative;
+      width: 100%;
+      padding: 5vh 0;
+      border-block: 1px solid rgba(171, 213, 255, .11);
+      transform: translateY(-1vh);
+    }
+    .marquee {
+      display: flex;
+      width: 100%;
+      overflow: hidden;
+      user-select: none;
+      -webkit-mask-image: linear-gradient(90deg, transparent, #000 12%, #000 88%, transparent);
+      mask-image: linear-gradient(90deg, transparent, #000 12%, #000 88%, transparent);
+    }
+    .track {
+      display: flex;
+      width: max-content;
+      flex: 0 0 auto;
+      animation: glide 24s linear infinite;
+      will-change: transform;
+    }
+    .group {
+      display: flex;
+      align-items: center;
+      flex: 0 0 auto;
+      gap: clamp(3rem, 8vw, 9rem);
+      padding-right: clamp(3rem, 8vw, 9rem);
+    }
+    .wordmark {
+      display: inline-block;
+      white-space: nowrap;
+      font-size: clamp(2.8rem, 9.4vw, 9rem);
+      font-weight: 760;
+      line-height: 1;
+      letter-spacing: .075em;
+      color: transparent;
+      background: linear-gradient(110deg, var(--ice) 8%, var(--blue) 38%, #fff 52%, var(--violet) 72%, var(--ice) 94%);
+      background-size: 220% 100%;
+      background-position: 0% 50%;
+      -webkit-background-clip: text;
+      background-clip: text;
+      text-shadow: 0 0 38px rgba(96, 186, 255, .08);
+      animation: shimmer 7s ease-in-out infinite alternate;
+    }
+    .spark {
+      width: clamp(8px, 1vw, 14px);
+      height: clamp(8px, 1vw, 14px);
+      flex: 0 0 auto;
+      border-radius: 50%;
+      background: var(--blue);
+      box-shadow: 0 0 12px rgba(117, 207, 255, .9), 0 0 32px rgba(117, 207, 255, .35);
+      opacity: .85;
+    }
+    @keyframes glide {
+      from { transform: translateX(0); }
+      to   { transform: translateX(-50%); }
+    }
+    @keyframes shimmer {
+      from { background-position: 0% 50%; }
+      to   { background-position: 100% 50%; }
+    }
+    @media (hover: hover) {
+      main:hover .track { animation-play-state: paused; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .track, .wordmark { animation: none; }
+      .track { transform: translateX(-8%); }
+    }
+  </style>
+</head>
+<body>
+  <main aria-label="NZX Kutatóintézet">
+    <div class="marquee" aria-label="NZX KUTATÓINTÉZET">
+      <div class="track">
+        <div class="group">
+          <span class="wordmark">NZX KUTATÓINTÉZET</span>
+          <span class="spark" aria-hidden="true"></span>
+        </div>
+        <div class="group" aria-hidden="true">
+          <span class="wordmark">NZX KUTATÓINTÉZET</span>
+          <span class="spark"></span>
+        </div>
+      </div>
+    </div>
+  </main>
+</body>
+</html>
